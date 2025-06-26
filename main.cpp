@@ -3,26 +3,63 @@
 #include "Vector3.h"
 #include "Ray.h"
 
-bool hitSphere(const Vector3 &center, double radius, const Ray &ray)
+double hitSphere(const Vector3 &center, double radius, const Ray &ray)
 {
     Vector3 fromCenter = center - ray.origin();
     auto a = dot(ray.direction(), ray.direction());
     auto b = -2.0 * dot(ray.direction(), fromCenter);
     auto c = dot(fromCenter, fromCenter) - radius * radius;
     auto discriminant = b * b - 4 * a * c;
-    return (discriminant >= 0);
+
+    if (discriminant < 0)
+    {
+        return -1.0;
+    }
+    else
+    {
+        return (-b - std::sqrt(discriminant)) / (2.0 * a);
+    }
 }
 
-Color getRayColor(const Ray &ray)
+Vector3 getSphereNormal(const double t, const Vector3 &center, const Ray &ray)
 {
-    if (hitSphere(Vector3(0, 0, -1), 0.5, ray))
-        return Color(1, 0, 0);
+    // normal is normalized vector from sphere center to hit point.
+    Vector3 fromCenter = ray.at(t) - center;
+    return normalize(fromCenter);
+}
 
+Color getBackgroundColor(const Ray &ray)
+{
     Vector3 unitDirection = normalize(ray.direction());
     auto alpha = 0.5 * (unitDirection.y() + 1.0);
     Color startColor = Color(1.0, 1.0, 1.0);
     Color targetColor = Color(0.5, 0.7, 1.0);
+    // Lerp
     return (1.0 - alpha) * startColor + alpha * targetColor;
+}
+
+Color getRayColor(const Ray &ray)
+{
+    const auto CENTER = Vector3(0, 0, -1);
+    const auto RADIUS = 0.5;
+    auto t = hitSphere(CENTER, RADIUS, ray);
+    if (t > 0.0)
+    // Hit sphere
+    {
+        // Get normal
+        const auto normal = getSphereNormal(t, CENTER, ray);
+        // Map it to [0, 1]
+        const Vector3 *mapped = new Vector3((normal.x() + 1) * 0.5, (normal.y() + 1) * 0.5, (normal.z() + 1) * 0.5);
+        // Debug color
+        const auto result = Color(mapped->x(), mapped->y(), mapped->z());
+        delete mapped;
+        return result;
+    }
+    else
+    // Hit nothing
+    {
+        return getBackgroundColor(ray);
+    }
 }
 
 int main()
