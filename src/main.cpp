@@ -25,7 +25,7 @@ double hitSphere(const Vector3 &center, double radius, const Ray &ray)
 
 Vector3 getSphereNormal(const double t, const Vector3 &center, const Ray &ray)
 {
-    // normal is normalized vector from sphere center to hit point.
+    // Normal is normalized vector from sphere center to hit point.
     Vector3 fromCenter = ray.at(t) - center;
     return normalize(fromCenter);
 }
@@ -105,7 +105,7 @@ int main()
 
             Color pixelColor = getRayColor(ray, scene);
 
-            write_color(std::cout, pixelColor);
+            writeColor(std::cout, pixelColor);
         }
     }
 
