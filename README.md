@@ -10,7 +10,7 @@ https://raytracing.github.io/books/RayTracingInOneWeekend.html#overview.
 To build the project with `clang`, run:
 
 ```sh
-./scripts/osxBuild.sh
+./scripts/clangBuild.sh
 ```
 
 This will compile the source code and output the binary to `build/main`.
