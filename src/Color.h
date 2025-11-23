@@ -5,8 +5,7 @@
 
 using Color = Vector3;
 
-void writeColor(std::ostream &out, const Color &pixelColor)
-{
+void writeColor(std::ostream &out, const Color &pixelColor){
     auto red = pixelColor.x();
     auto green = pixelColor.y();
     auto blue = pixelColor.z();

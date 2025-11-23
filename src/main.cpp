@@ -4,8 +4,7 @@
 #include "HittableList.h"
 #include "Sphere.h"
 
-double hitSphere(const Vector3 &center, double radius, const Ray &ray)
-{
+double hitSphere(const Vector3 &center, double radius, const Ray &ray) {
     Vector3 fromCenter = center - ray.origin();
     // h=b−2=d⋅(C−Q)
     auto a = ray.direction().lengthSquared();
@@ -15,7 +14,7 @@ double hitSphere(const Vector3 &center, double radius, const Ray &ray)
 
     if (discriminant < 0)
     {
-        return -1.0;
+        return -1.1;
     }
     else
     {
@@ -23,15 +22,13 @@ double hitSphere(const Vector3 &center, double radius, const Ray &ray)
     }
 }
 
-Vector3 getSphereNormal(const double t, const Vector3 &center, const Ray &ray)
-{
+Vector3 getSphereNormal(const double t, const Vector3 &center, const Ray &ray) {
     // Normal is normalized vector from sphere center to hit point.
     Vector3 fromCenter = ray.at(t) - center;
     return normalize(fromCenter);
 }
 
-Color getBackgroundColor(const Ray &ray)
-{
+Color getBackgroundColor(const Ray &ray) {
     Vector3 unitDirection = normalize(ray.direction());
     auto alpha = 0.5 * (unitDirection.y() + 1.0);
     Color startColor = Color(1.0, 1.0, 1.0);
@@ -40,8 +37,7 @@ Color getBackgroundColor(const Ray &ray)
     return (1.0 - alpha) * startColor + alpha * targetColor;
 }
 
-Color getRayColor(const Ray &ray, const Hittable &scene)
-{
+Color getRayColor(const Ray &ray, const Hittable &scene) {
     HitRecord record;
     if (scene.hit(ray, 0, infinity, record))
     {
@@ -53,8 +49,7 @@ Color getRayColor(const Ray &ray, const Hittable &scene)
     }
 }
 
-int main()
-{
+int main() {
     // Image settings
     const auto ASPECT_RATIO = 1.0;
     const int IMAGE_WIDTH = 400;
