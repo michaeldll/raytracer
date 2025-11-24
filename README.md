@@ -7,24 +7,36 @@ https://raytracing.github.io/books/RayTracingInOneWeekend.html#overview.
 
 ## Build Instructions
 
-To build the project with `clang`, run:
+To build the project, run:
 
 ```sh
-./scripts/clangBuild.sh
+make
 ```
 
-This will compile the source code and output the binary to `build/main`.
+This will compile the source code and output the binary to `bin/main`.
+
+For an optimized production build, run:
+
+```sh
+make build-prod
+```
 
 ## Render Output
 
-To render a single image, run:
+To build and render a single image in one command, run:
 
 ```sh
-./scripts/render.sh
+make render
 ```
 
-The output .ppm image file will be written to `output/render.ppm`.
+The output .ppm image file will be written to `renders/render.ppm`.
+
+## Other Commands
+
+- `make clear` - Clean all build artifacts (removes `bin/` and `renders/`)
+- `make build-dev` - Build with debug symbols (same as `make`)
+- `make build-prod` - Build with optimizations and no debug symbols
 
 ## Dependencies
-- C++14 compiler (e.g., clang++)
-- Bash shell (for running scripts)
+- C++14 compiler (e.g., clang++ or g++)
+- Make (for build system)
