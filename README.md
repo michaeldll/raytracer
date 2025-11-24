@@ -3,6 +3,7 @@
 This is a barebones raycaster in C++.
 
 ## Reference
+
 https://raytracing.github.io/books/RayTracingInOneWeekend.html#overview.
 
 ## Build Instructions
@@ -15,11 +16,9 @@ make
 
 This will compile the source code and output the binary to `bin/main`.
 
-For an optimized production build, run:
+`make build-dev` outputs a development build with debug symbols (same as `make`).
 
-```sh
-make build-prod
-```
+`make build-prod` outputs a production build with optimizations and no debug symbols.
 
 ## Render Output
 
@@ -33,10 +32,9 @@ The output .ppm image file will be written to `renders/render.ppm`.
 
 ## Other Commands
 
-- `make clear` - Clean all build artifacts (removes `bin/` and `renders/`)
-- `make build-dev` - Build with debug symbols (same as `make`)
-- `make build-prod` - Build with optimizations and no debug symbols
+- `make clear` - Clean build and render artifacts (removes `bin/` and `renders/`)
 
 ## Dependencies
-- C++14 compiler (e.g., clang++ or g++)
-- Make (for build system)
+
+- Clang
+- Make
