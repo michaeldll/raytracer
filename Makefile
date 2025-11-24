@@ -10,7 +10,7 @@ BIN := $(OBJDIR)/main
 OUTDIR := renders
 OUTFILE := $(OUTDIR)/render.ppm
 
-.PHONY: build build-dev build-prod render clear
+.PHONY: build build-dev build-prod render clear test
 
 build: build-dev
 
@@ -35,6 +35,9 @@ render: build
 	@mkdir -p $(OUTDIR)
 	@$(BIN) > $(OUTFILE)
 	@echo "Wrote $(OUTFILE)"
+
+test:
+	@bash tests/run_tests.sh
 
 # Delete binary and render folders
 clear: 
