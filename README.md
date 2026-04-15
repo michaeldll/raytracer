@@ -5,25 +5,19 @@ This is a barebones raycaster in C++.
 ## Reference
 https://raytracing.github.io/books/RayTracingInOneWeekend.html#overview.
 
-## Build Instructions
+## Instructions
 
-To build the project with `clang`, run:
+Build the binary:
+`make`
 
-```sh
-./scripts/clangBuild.sh
-```
+Render an image:
+`make render`
 
-This will compile the source code and output the binary to `build/main`.
+Build with debugging flags:
+`make build-dev`
 
-## Render Output
-
-To render a single image, run:
-
-```sh
-./scripts/render.sh
-```
-
-The output .ppm image file will be written to `output/render.ppm`.
+Delete artefacts:
+`clear`
 
 ## Dependencies
 - C++14 compiler (e.g., clang++)

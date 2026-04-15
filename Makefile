@@ -12,7 +12,7 @@ OUTFILE := $(OUTDIR)/render.ppm
 
 .PHONY: build build-dev build-prod render clear
 
-build: build-dev
+build: build-prod
 
 # Force rebuild for dev and prod, to override binary when necessary
 build-dev: | $(OBJDIR)
@@ -36,7 +36,7 @@ render: build
 	@$(BIN) > $(OUTFILE)
 	@echo "Wrote $(OUTFILE)"
 
-# Delete binary and render folders
+# Delete artefacts
 clear: 
 	rm -rf ./bin	
 	rm -rf ./renders
