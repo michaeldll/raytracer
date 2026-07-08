@@ -1,4 +1,4 @@
-# Baby Raycaster
+# Raytracer
 
 This is a barebones raycaster in C++.
 
